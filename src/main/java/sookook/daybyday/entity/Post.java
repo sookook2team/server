@@ -2,6 +2,7 @@ package sookook.daybyday.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
@@ -14,7 +15,7 @@ import java.util.Date;
 @Entity  // 설정 클래스
 @EntityListeners(AuditingEntityListener.class)
 public class Post {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     // createdAt 필드 추가
@@ -29,16 +30,20 @@ public class Post {
 
     private Date date;
 
+    @ColumnDefault("0")
     private Integer views;
+
+    @ColumnDefault("0")
+    private Integer likes;
 
     @Enumerated(EnumType.STRING)
     private Category category;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
-    public static void createPost(String title,
+    public static Post createPost(String title,
                                   String content,
                                   Date date) {
         Post post = new Post();
@@ -46,5 +51,6 @@ public class Post {
         post.setContent(content);
         post.setDate(date);
 
+        return post;
     }
 }
