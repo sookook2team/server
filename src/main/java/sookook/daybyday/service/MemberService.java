@@ -14,6 +14,20 @@ public class MemberService {
     // 회원 정보 조회는 session에서
     private final MemberRepository memberRepository;
 
+    // 회원 로그인
+    public Member login(String email, String password)
+    {
+        Optional<Member> optionalMember = memberRepository.findByEmail(email);
+        if (optionalMember.isEmpty()) { return null; }
+
+        Member member = optionalMember.get();
+        if (!member.getPassword().equals(password))
+        {
+            return null;
+        }
+        return member;
+    }
+
     // 회원 가입
     public Member createMember(String email, String username, String password)
     {
