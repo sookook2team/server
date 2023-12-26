@@ -10,5 +10,4 @@ public class LikeHistoryService {
 
     private final LikeHistoryRepository likeHistoryRepository;
 
-
 }
