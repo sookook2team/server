@@ -19,7 +19,15 @@ public class Hashtag {
     @Column(nullable = false)
     private String name;
 
+    public static Hashtag createHashtag(String content) {
+
+        Hashtag hashtag = new Hashtag();
+        hashtag.setName(content);
+        return hashtag;
+    }
+
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="post_id")
     private Post post;
+
 }

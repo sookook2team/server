@@ -12,7 +12,6 @@ import sookook.daybyday.service.MemberService;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
-@Slf4j
 public class MemberController {
 
     private final MemberService memberService;

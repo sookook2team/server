@@ -37,6 +37,9 @@ public class Post {
     @ColumnDefault("0")
     private Integer likes;
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Hashtag> hashtags = new ArrayList<>();
+
     @Enumerated(EnumType.STRING)
     private Category category;
 
