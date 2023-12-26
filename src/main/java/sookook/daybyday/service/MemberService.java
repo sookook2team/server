@@ -2,7 +2,6 @@ package sookook.daybyday.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import sookook.daybyday.entity.Member;
 import sookook.daybyday.repository.MemberRepository;
 
@@ -10,7 +9,6 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class MemberService {
 
     // 회원 정보 조회는 session에서
@@ -18,8 +16,7 @@ public class MemberService {
 
 <<<<<<< HEAD
     // 회원 로그인
-    @Transactional(readOnly = true)
-    public Long login(String email, String password)
+    public Member login(String email, String password)
     {
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
         if (optionalMember.isEmpty()) {
@@ -30,7 +27,7 @@ public class MemberService {
         if (!member.getPassword().equals(password)) {
             throw new IllegalStateException("비밀번호가 틀립니다.");
         }
-        return member.getId();
+        return member;
     }
 
 
@@ -58,9 +55,7 @@ public class MemberService {
 >>>>>>> b0e60a4 (add user)
         }
     }
-
     // 회원 정보 수정
-    @Transactional
     public Member updateMember(Long memberId, String email, String password, String username)
     {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
@@ -97,9 +92,8 @@ public class MemberService {
         return memberRepository.existsByEmail(email);
     }
 
-    @Transactional(readOnly = true)
-    public Member findById(Long id) {
-        return memberRepository.findById(id).get();
+    public Member findById(Long memberId) {
+        return memberRepository.findById(memberId).get();
     }
 
 =======
