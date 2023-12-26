@@ -14,7 +14,6 @@ public class MemberService {
     // 회원 정보 조회는 session에서
     private final MemberRepository memberRepository;
 
-<<<<<<< HEAD
     // 회원 로그인
     public Member login(String email, String password)
     {
@@ -39,20 +38,7 @@ public class MemberService {
             return memberRepository.save(member);
         } else {
             throw new IllegalStateException("이미 있는 회원입니다.");
-=======
-    // 회원 가입
-    public Member createMember(String email, String username, String password)
-    {
-        if (!emailDoubleCheck(email))
-        {
-            Member member = Member.createMember(email, username, password);
-            return memberRepository.save(member);
-        }
-        else
-        {
-            Exception e = null;
-            throw new RuntimeException(e);
->>>>>>> b0e60a4 (add user)
+
         }
     }
     // 회원 정보 수정
@@ -67,27 +53,18 @@ public class MemberService {
             member.setUsername(username);
 
             return memberRepository.save(member);
-<<<<<<< HEAD
-=======
-            
->>>>>>> b0e60a4 (add user)
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     // 회원 탈퇴
-<<<<<<< HEAD
     public void deleteMember(Member member) {
-=======
-    public void deleteMember(Member member)
-    {
->>>>>>> b0e60a4 (add user)
         memberRepository.delete(member);
     }
 
     // 회원 가입 시 이메일 중복확인
-<<<<<<< HEAD
     public boolean emailDoubleCheck(String email) {
         return memberRepository.existsByEmail(email);
     }
@@ -96,11 +73,4 @@ public class MemberService {
         return memberRepository.findById(memberId).get();
     }
 
-=======
-    public boolean emailDoubleCheck(String email)
-    {
-        return memberRepository.existsByEmail(email);
-    }
-
->>>>>>> b0e60a4 (add user)
 }
