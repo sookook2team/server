@@ -54,7 +54,6 @@ public class MemberService {
             member.setUsername(username);
 
             return memberRepository.save(member);
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -67,6 +66,7 @@ public class MemberService {
     }
 
     // 회원 가입 시 이메일 중복확인
+
     public boolean emailDoubleCheck(String email) {
         return memberRepository.existsByEmail(email);
     }
