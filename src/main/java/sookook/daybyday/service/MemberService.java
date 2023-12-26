@@ -45,7 +45,7 @@ public class MemberService {
             throw new IllegalStateException("이미 있는 회원입니다.");
 =======
     // 회원 가입
-    public Member createUser(String email, String username, String password)
+    public Member createMember(String email, String username, String password)
     {
         if (emailDoubleCheck(email))
         {
