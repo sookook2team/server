@@ -31,7 +31,7 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
 
-    public static Member createUser(String email,
+    public static Member createMember(String email,
                                     String password,
                                     String username) {
 
