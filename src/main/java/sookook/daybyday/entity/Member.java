@@ -36,7 +36,6 @@ public class Member {
                                     String username) {
 
         Member member = new Member();
-
         member.setEmail(email);
         member.setPassword(password);
         member.setUsername(username);
