@@ -33,8 +33,8 @@ public class Member {
                                       String password,
                                       String username) {
 
-        Member member = new Member();
 
+        Member member = new Member();
         member.setEmail(email);
         member.setPassword(password);
         member.setUsername(username);
