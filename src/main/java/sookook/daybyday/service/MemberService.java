@@ -19,12 +19,13 @@ public class MemberService {
     public Member login(String email, String password)
     {
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
-        if (optionalMember.isEmpty()) { return null; }
+        if (optionalMember.isEmpty()) {
+            throw new IllegalStateException("없는 회원입니다.");
+        }
 
         Member member = optionalMember.get();
-        if (!member.getPassword().equals(password))
-        {
-            return null;
+        if (!member.getPassword().equals(password)) {
+            throw new IllegalStateException("비밀번호가 틀립니다.");
         }
         return member;
     }
@@ -32,14 +33,11 @@ public class MemberService {
     // 회원 가입
     public Member createMember(String email, String username, String password)
     {
-        if (!emailDoubleCheck(email))
-        {
+        if (!emailDoubleCheck(email)) {
             Member member = Member.createMember(email, username, password);
             return memberRepository.save(member);
-        }
-        else
-        {
-            return null;
+        } else {
+            throw new IllegalStateException("이미 있는 회원입니다.");
         }
     }
     // 회원 정보 수정
@@ -60,13 +58,11 @@ public class MemberService {
     }
 
     // 회원 탈퇴
-    public void deleteMember(Member member)
-    {
+    public void deleteMember(Member member) {
         memberRepository.delete(member);
     }
 
     // 회원 가입 시 이메일 중복확인
-
     public boolean emailDoubleCheck(String email) {
         return memberRepository.existsByEmail(email);
     }

@@ -30,8 +30,8 @@ public class Member {
     private List<Post> posts = new ArrayList<>();
 
     public static Member createMember(String email,
-                                      String password,
-                                      String username) {
+                                      String username,
+                                      String password) {
 
 
         Member member = new Member();
@@ -39,9 +39,5 @@ public class Member {
         member.setPassword(password);
         member.setUsername(username);
         return member;
-    }
-
-    public void addPost(Post post) {
-        this.posts.add(post);
     }
 }
