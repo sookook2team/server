@@ -16,7 +16,9 @@ public class Hashtag {
     @Column(name = "hashtag_id")
     private Long id;
 
-    @Column(nullable = false)
+    // hashtag의 내용은 15자를 넘어가면 안됨. 총 3글자씩 4단어까지 입력 가능
+    // 3자 + 3자 + 3자 + 3자
+    @Column(nullable = false, length = 16)
     private String name;
 
     public static Hashtag createHashtag(String content) {

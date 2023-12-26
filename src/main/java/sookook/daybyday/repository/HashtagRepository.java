@@ -12,12 +12,11 @@ import java.util.Optional;
 
 public interface HashtagRepository extends JpaRepository<Hashtag, Long> {
 
-    boolean existsByHashtag(String content);
+//    @Query("SELECT t FROM Hashtag t WHERE t.name = :hashtag_name")
+//    Hashtag findByHashtagName(@Param("hashtag_name") String hashtagName);
 
-    @Query("SELECT t FROM Hashtag t WHERE t.name = :hashtag_name")
-    Hashtag findByHashtagName(@Param("hashtag_name") String hashtagName);
-
-    @Query("SELECT t FROM Hashtag t WHERE t.name = :hashtag_name")
-    Hashtag findByHashtagName(@Param("hashtag_name") String hashtagName);
+    // post에 hashtag리스트를 조회함.
+    @Query("SELECT t FROM Hashtag t WHERE t.post.id = :post_id")
+    List<Hashtag> findByPostId(@Param("post_id") Long post_id);
 }
 
