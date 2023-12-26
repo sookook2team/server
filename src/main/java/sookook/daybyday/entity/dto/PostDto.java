@@ -19,6 +19,7 @@ public class PostDto {
     private LocalDate date;
     private Category category;
     private List<HashtagDto> hashtags;
+    private List<CommentDto> comments;
 
     public PostDto(Post post) {
         title = post.getTitle();
@@ -27,6 +28,9 @@ public class PostDto {
         category = post.getCategory();
         hashtags = post.getHashtags().stream()
                 .map(HashtagDto::new)
+                .collect(Collectors.toList());
+        comments = post.getComments().stream()
+                .map(CommentDto::new)
                 .collect(Collectors.toList());
     }
 }

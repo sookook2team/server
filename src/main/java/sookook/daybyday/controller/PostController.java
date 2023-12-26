@@ -44,7 +44,6 @@ public class PostController {
         List<PostDto> list = postService.getPostsByMemberId(memberId).stream().map(PostDto::new).toList();
 
         return new PostByMemberDto(member, list);
-
     }
 
     /** 게시글 생성 */

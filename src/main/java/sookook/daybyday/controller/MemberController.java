@@ -12,6 +12,7 @@ import sookook.daybyday.service.MemberService;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
+@CrossOrigin(origins = "http://localhost:3000")
 @Slf4j
 public class MemberController {
 
@@ -22,7 +23,6 @@ public class MemberController {
     public String signup(@RequestBody SignDto dto) {
         try {
             Member member = memberService.createMember(dto.getEmail(), dto.getUsername(), dto.getPassword());
-            log.info(String.valueOf(dto));
             return "{ msg : 성공, redirect: login 화면으로! }";
         } catch (Exception e) {
             throw new IllegalStateException("잘못된 접근입니다.");
@@ -30,14 +30,15 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login(HttpServletRequest request, @RequestBody SignDto dto) {
+    public Long login(HttpServletRequest request, @RequestBody SignDto dto) {
         try {
-            Member login = memberService.login(dto.getEmail(), dto.getPassword());
+            Long sessionId = memberService.login(dto.getEmail(), dto.getPassword());
 
-            request.getSession().setAttribute("memberEmail", dto.getEmail());
-
-            return "{ msg : 로그인 성공}";
+            request.getSession().setAttribute("memberId", sessionId);
+            log.info("로그인 성공!");
+            return sessionId;
         } catch (Exception e) {
+            log.info("로그인 실패!");
             throw new RuntimeException(e);
         }
     }
@@ -45,6 +46,9 @@ public class MemberController {
     @DeleteMapping("/")
     public String delete() {
         try {
+            Long memberId = (Long) session.getAttribute("memberId");
+            Member member = memberService.findById(memberId);
+            memberService.deleteMember(member);
             session.removeAttribute("memberEmail");
             return "회원 탈퇴 성공";
         } catch (Exception e) {

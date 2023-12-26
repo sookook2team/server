@@ -47,8 +47,8 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Hashtag> hashtags = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Comment> comments = new ArrayList<>();
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     public static Post createPost(String title,
                                   String content,
