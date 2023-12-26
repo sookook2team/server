@@ -12,6 +12,4 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-
-
 }
