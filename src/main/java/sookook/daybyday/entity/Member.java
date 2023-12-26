@@ -8,8 +8,6 @@ import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
-@Builder
 @Entity  // 설정 클래스
 public class Member {
 
@@ -31,9 +29,9 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
 
-    public static Member createUser(String email,
-                                    String password,
-                                    String username) {
+    public static Member createMember(String email,
+                                      String password,
+                                      String username) {
 
         Member member = new Member();
 

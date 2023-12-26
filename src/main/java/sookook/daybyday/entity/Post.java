@@ -5,8 +5,8 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -28,7 +28,7 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
-    private Date date;
+    private LocalDate date;
 
     @ColumnDefault("0")
     private Integer views;
@@ -45,11 +45,15 @@ public class Post {
 
     public static Post createPost(String title,
                                   String content,
-                                  Date date) {
+                                  LocalDate date,
+                                  Category category,
+                                  Member member) {
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
         post.setDate(date);
+        post.setCategory(category);
+        member.addPost(post);
 
         return post;
     }

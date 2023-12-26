@@ -2,11 +2,13 @@ package sookook.daybyday.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import sookook.daybyday.repository.UserRepository;
+import sookook.daybyday.repository.LikeHistoryRepository;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class LikeHistoryService {
 
-    private final UserRepository userRepository;
+    private final LikeHistoryRepository likeHistoryRepository;
+
+
 }
