@@ -22,5 +22,5 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private User user;
+    private Member member;
 }

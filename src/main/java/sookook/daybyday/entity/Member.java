@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity  // 설정 클래스
-public class User {
+public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO) //
     private Long id;
@@ -27,19 +27,19 @@ public class User {
 
     private String profileImage;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Post> posts = new ArrayList<>();
 
-    public static User createUser(String email,
-                                      String password,
-                                      String username) {
+    public static Member createUser(String email,
+                                    String password,
+                                    String username) {
 
-        User user = new User();
+        Member member = new Member();
 
-        user.email = email;
-        user.password = password;
-        user.username = username;
-        return user;
+        member.email = email;
+        member.password = password;
+        member.username = username;
+        return member;
     }
 
     public void addPost(Post post) {
