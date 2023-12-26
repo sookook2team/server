@@ -35,8 +35,8 @@ public class Post {
     private Category category;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     public static void createPost(String title,
                                   String content,

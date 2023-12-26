@@ -11,36 +11,37 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity  // 설정 클래스
-public class User {
+
+public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
+    @Column(name = "member_id")
     private Long id;
 
     @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
-    private String username;
+    private String memberName;
 
     @Column(nullable = false)
     private String password;
 
     private String profileImage;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
 
-    public static User createUser(String email,
-                                      String password,
-                                      String username) {
+    public static Member createUser(String email,
+                                    String password,
+                                    String memberName) {
 
-        User user = new User();
+        Member member = new Member();
 
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setUsername(username);
-        return user;
+        member.setEmail(email);
+        member.setPassword(password);
+        member.setMemberName(memberName);
+        return member;
     }
 
     public void addPost(Post post) {
