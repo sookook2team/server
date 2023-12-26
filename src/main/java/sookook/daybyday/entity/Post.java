@@ -7,6 +7,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -35,6 +37,9 @@ public class Post {
 
     @ColumnDefault("0")
     private Integer likes;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Hashtag> hashtags = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private Category category;
