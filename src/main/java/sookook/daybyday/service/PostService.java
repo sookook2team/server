@@ -22,12 +22,11 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    /**
-     * 게시글 생성
-     */
-    public void create(String title, String content, LocalDate date, Category category , Member member) {
+    /** 게시글 생성 */
+    public Post create(String title, String content, LocalDate date, Category category , Member member) {
         Post post = Post.createPost(title, content, date, category, member);
         postRepository.save(post);
+        return post;
     }
 
     /**
@@ -37,16 +36,6 @@ public class PostService {
     public List<Post> getPostsByMemberId(Long memberId) {
         return postRepository.findByMemberId(memberId);
     }
-
-    /**
-     * 특정 게시글 조회
-     *
-     * @return
-     */
-    public Post findById(Long postId) {
-        return postRepository.findById(postId).get();
-    }
-
 
     /** 날짜별 게시글 조회 */
     @Transactional(readOnly = true)
@@ -70,8 +59,4 @@ public class PostService {
             post.setCategory(postDto.getCategory());
         }
     }
-
-
-
-
 }
