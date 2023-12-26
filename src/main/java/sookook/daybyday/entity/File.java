@@ -26,7 +26,4 @@ public class File {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="post_id")
     private Post post;
-
-
-
 }

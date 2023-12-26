@@ -25,7 +25,7 @@ public class InitDB {
 
         private final EntityManager em;
         public void init() {
-            Member member = Member.createMember("admin@naver.com", "1234", "류건");
+            Member member = Member.createMember("admin@naver.com", "류건", "1234");
             em.persist(member);
         }
     }
