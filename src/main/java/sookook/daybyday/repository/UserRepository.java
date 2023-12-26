@@ -1,4 +1,9 @@
 package sookook.daybyday.repository;
 
-public interface UserRepository {
+import org.springframework.data.repository.CrudRepository;
+import sookook.daybyday.entity.User;
+
+import java.util.ArrayList;
+
+public interface UserRepository extends CrudRepository<User, Long> {
 }
