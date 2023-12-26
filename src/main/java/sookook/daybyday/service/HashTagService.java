@@ -63,4 +63,10 @@ public class HashTagService {
         return hashtags.toArray(new Hashtag[0]);
     }
 
+    // 해시태그 삭제
+    public void delete(Hashtag hashtag) {
+        hashtagRepository.delete(hashtag);
+    }
+
+
 }
