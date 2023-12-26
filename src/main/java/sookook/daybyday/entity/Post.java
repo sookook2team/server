@@ -12,7 +12,6 @@ import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @Entity  // 설정 클래스
 @EntityListeners(AuditingEntityListener.class)
 public class Post {
@@ -49,6 +48,9 @@ public class Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<File> files = new ArrayList<>();
 
     public static Post createPost(String title,
                                   String content,

@@ -17,5 +17,4 @@ public class PostByMemberDto {
         username = member.getUsername();
         this.posts = posts;
     }
-
 }

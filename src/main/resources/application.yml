@@ -14,3 +14,14 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
+
+
+cloud:
+  aws:
+    s3:
+      bucket: sookookbucket
+    stack.auto: false
+    region.static: ap-northeast-2
+    credentials:
+      accessKey: AKIAT6UNPE54SCXQWHVS
+      secretKey: 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

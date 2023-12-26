@@ -24,11 +24,15 @@ public class PostService {
 
     /**
      * 게시글 생성
+     *
+     * @return
      */
-    public void create(String title, String content, LocalDate date, Category category , Member member) {
+    public Post create(String title, String content, LocalDate date, Category category , Member member) {
         Post post = Post.createPost(title, content, date, category, member);
         postRepository.save(post);
+        return post;
     }
+
 
     /**
      * 사용자별 게시글 조회

@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sookook.daybyday.entity.Category;
-import sookook.daybyday.entity.Hashtag;
 import sookook.daybyday.entity.Post;
 
 import java.time.LocalDate;

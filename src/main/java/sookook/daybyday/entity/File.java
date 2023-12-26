@@ -18,12 +18,15 @@ public class File {
     private Long file_id;
 
     @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String path;
+    private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="post_id")
     private Post post;
+
+    public void setPost(Post post) {
+        this.post = post;
+        post.getFiles().add(this);
+    }
+
 }

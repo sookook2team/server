@@ -8,7 +8,6 @@ import sookook.daybyday.entity.Hashtag;
 
 public class HashtagDto {
     private String name;
-
     public HashtagDto(Hashtag hashtag) {
         this.name = hashtag.getName();
     }
