@@ -59,8 +59,4 @@ public class PostService {
             post.setCategory(postDto.getCategory());
         }
     }
-
-
-
-
 }

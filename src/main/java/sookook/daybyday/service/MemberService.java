@@ -15,6 +15,20 @@ public class MemberService {
     // 회원 가입은 Member entity에서 함.
     private final MemberRepository memberRepository;
 
+    // 회원 로그인
+    public Member login(String email, String password)
+    {
+        Optional<Member> optionalMember = memberRepository.findByEmail(email);
+        if (optionalMember.isEmpty()) { return null; }
+
+        Member member = optionalMember.get();
+        if (!member.getPassword().equals(password))
+        {
+            return null;
+        }
+        return member;
+    }
+
     // 회원 가입
     public Member createMember(String email, String username, String password)
     {
@@ -25,8 +39,7 @@ public class MemberService {
         }
         else
         {
-            Exception e = null;
-            throw new RuntimeException(e);
+            return null;
         }
     }
     // 회원 정보 수정
@@ -41,7 +54,6 @@ public class MemberService {
             member.setUsername(username);
 
             return memberRepository.save(member);
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -54,6 +66,7 @@ public class MemberService {
     }
 
     // 회원 가입 시 이메일 중복확인
+
     public boolean emailDoubleCheck(String email) {
         return memberRepository.existsByEmail(email);
     }
