@@ -14,7 +14,6 @@ import java.util.Optional;
 public class MemberService {
 
     // 회원 정보 조회는 session에서
-    // 회원 가입은 Member entity에서 함.
     private final MemberRepository memberRepository;
 
 <<<<<<< HEAD
@@ -47,9 +46,9 @@ public class MemberService {
     // 회원 가입
     public Member createMember(String email, String username, String password)
     {
-        if (emailDoubleCheck(email))
+        if (!emailDoubleCheck(email))
         {
-            Member member = Member.createUser(email, username, password);
+            Member member = Member.createMember(email, username, password);
             return memberRepository.save(member);
         }
         else

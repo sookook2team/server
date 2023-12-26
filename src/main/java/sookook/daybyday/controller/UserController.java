@@ -8,4 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
+
+//    # HttpSession session
+//            session.getAttribute("email")
 }
