@@ -4,8 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import sookook.daybyday.entity.Category;
 import sookook.daybyday.entity.Hashtag;
+import sookook.daybyday.entity.Post;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter @Setter
 public class PostDto {
@@ -13,18 +16,18 @@ public class PostDto {
     private String content;
     private LocalDate date;
     private Category category;
-    private Hashtag hashtag;
+    private List<HashtagDto> hashtags;
 
     public PostDto() {
     }
 
-    public PostDto(String title,
-                   String content,
-                   LocalDate date,
-                   Category category) {
-        this.title = title;
-        this.content = content;
-        this.date = date;
-        this.category = category;
+    public PostDto(Post post) {
+        title = post.getTitle();
+        content = post.getContent();
+        date = post.getDate();
+        category = post.getCategory();
+        hashtags = post.getHashtags().stream()
+                .map(HashtagDto::new)
+                .collect(Collectors.toList());
     }
 }
