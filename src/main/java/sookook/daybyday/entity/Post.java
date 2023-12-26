@@ -13,7 +13,6 @@ import java.util.List;
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Builder
 @Entity  // 설정 클래스
 @EntityListeners(AuditingEntityListener.class)
 public class Post {
@@ -45,6 +44,12 @@ public class Post {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Hashtag> hashtags = new ArrayList<>();
+
+//    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Comment> comments = new ArrayList<>();
+
     public static Post createPost(String title,
                                   String content,
                                   LocalDate date,
@@ -55,8 +60,13 @@ public class Post {
         post.setContent(content);
         post.setDate(date);
         post.setCategory(category);
-        member.addPost(post);
+        post.setMember(member);
 
         return post;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+        member.getPosts().add(this);
     }
 }
