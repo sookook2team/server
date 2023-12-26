@@ -12,7 +12,6 @@ import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @Entity  // 설정 클래스
 @EntityListeners(AuditingEntityListener.class)
 public class Post {
