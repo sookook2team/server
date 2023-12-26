@@ -11,17 +11,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
 public class Hashtag {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long hashtag_id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "hashtag_id")
+    private Long id;
 
     @Column(nullable = false)
     private String name;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="post_id")
-    Post post;
+    private Post post;
 }
