@@ -8,11 +8,12 @@ import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 @Entity  // 설정 클래스
-public class Member {
+public class User {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
+    @Id @GeneratedValue(strategy = GenerationType.AUTO) //
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -26,18 +27,22 @@ public class Member {
 
     private String profileImage;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user")
     private List<Post> posts = new ArrayList<>();
 
-    public static Member createMember(String email,
-                                      String username,
-                                      String password) {
+    public static User createUser(String email,
+                                      String password,
+                                      String username) {
 
+        User user = new User();
 
-        Member member = new Member();
-        member.setEmail(email);
-        member.setPassword(password);
-        member.setUsername(username);
-        return member;
+        user.email = email;
+        user.password = password;
+        user.username = username;
+        return user;
+    }
+
+    public void addPost(Post post) {
+        this.posts.add(post);
     }
 }
