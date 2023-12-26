@@ -13,7 +13,8 @@ import java.util.List;
 @Entity  // 설정 클래스
 public class User {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO) //
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -27,7 +28,7 @@ public class User {
 
     private String profileImage;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
 
     public static User createUser(String email,
@@ -36,9 +37,9 @@ public class User {
 
         User user = new User();
 
-        user.email = email;
-        user.password = password;
-        user.username = username;
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setUsername(username);
         return user;
     }
 
