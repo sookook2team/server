@@ -13,5 +13,4 @@ public class HashtagDto {
     public HashtagDto(String name) {
         this.name = name;
     }
-
 }
