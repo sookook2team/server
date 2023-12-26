@@ -6,9 +6,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
 @Entity  // 설정 클래스
@@ -20,7 +19,6 @@ public class Post {
     // createdAt 필드 추가
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
