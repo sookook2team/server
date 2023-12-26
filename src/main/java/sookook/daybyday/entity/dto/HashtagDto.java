@@ -14,4 +14,6 @@ public class HashtagDto {
         this.name = name;
     }
 
+    public HashtagDto(Hashtag hashtag) {
+    }
 }
