@@ -16,7 +16,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     // 회원 가입
-    public Member createUser(String email, String username, String password)
+    public Member createMember(String email, String username, String password)
     {
         if (emailDoubleCheck(email))
         {
