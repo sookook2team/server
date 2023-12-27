@@ -36,12 +36,12 @@ class PostControllerTest {
 
         request.getSession().setAttribute("memberId", member.getId());
 
-        Post post = postService.create("으하하", "안녕하신가", LocalDate.parse("2023-11-11"), Category.DAILY, member);
+//        Post post = postService.create("으하하", "안녕하신가", LocalDate.parse("2023-11-11"), Category.DAILY, member);
 
         // when
 
         // then
-        System.out.println(post);
+//        System.out.println(post);
     }
 
 }

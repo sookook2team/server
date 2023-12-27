@@ -5,9 +5,7 @@ import lombok.*;
 
 @Entity
 @Getter @Setter
-@Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@NoArgsConstructor
 public class LikeHistory {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "like_id")

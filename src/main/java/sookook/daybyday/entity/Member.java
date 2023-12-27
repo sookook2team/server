@@ -1,5 +1,6 @@
 package sookook.daybyday.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor()
 @Entity  // 설정 클래스
 public class Member {
 
@@ -27,6 +28,7 @@ public class Member {
     private String profileImage;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Post> posts = new ArrayList<>();
 
     public static Member createMember(String email,
@@ -38,6 +40,8 @@ public class Member {
         member.setEmail(email);
         member.setPassword(password);
         member.setUsername(username);
+
+
         return member;
     }
 }

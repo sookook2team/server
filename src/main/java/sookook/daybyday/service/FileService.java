@@ -27,10 +27,11 @@ public class FileService {
     private String bucket;
 
     @Transactional
-    public void create(String url) {
+    public File create(String url) {
         File file = new File();
         file.setUrl(url);
         fileRepository.save(file);
+        return file;
     }
 
     public ResponseEntity<List<String>> uploadFiles(List<MultipartFile> files) {
