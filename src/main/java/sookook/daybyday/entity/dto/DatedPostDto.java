@@ -3,7 +3,6 @@ package sookook.daybyday.entity.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sookook.daybyday.entity.Category;
 import sookook.daybyday.entity.Post;
 
 import java.time.LocalDate;
@@ -12,20 +11,22 @@ import java.util.stream.Collectors;
 
 @Getter @Setter
 @NoArgsConstructor
-public class PostDto {
+public class DatedPostDto {
+    private Long id;
     private String title;
     private String content;
     private LocalDate date;
-    private Category category;
-    private List<CommentDto> comments;
+    private List<FilesDto> files;
+    private Integer views;
+    private Integer likes;
 
-    public PostDto(Post post) {
+    public DatedPostDto(Post post) {
+        id = post.getId();
         title = post.getTitle();
         content = post.getContent();
         date = post.getDate();
-        category = post.getCategory();
-        comments = post.getComments().stream()
-                .map(CommentDto::new)
-                .collect(Collectors.toList());
+        files = post.getFiles().stream().map(FilesDto::new).collect(Collectors.toList());
+        views = post.getViews();
+        likes = post.getLikes();
     }
 }
