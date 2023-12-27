@@ -53,8 +53,8 @@ public class PostService {
 
 
     /** 날짜별 게시글 조회 */
-    @Transactional(readOnly = true)
-    public List<Post> getPostsByMonth(int year, int month) {
+//    @Transactional(readOnly = true)
+    public List<Post> getPostsByMonth(Integer year, Integer month) {
         return postRepository.findByMonth(year, month);
     }
 
@@ -74,6 +74,8 @@ public class PostService {
             post.setCategory(postDto.getCategory());
         }
     }
+
+
 
 
 

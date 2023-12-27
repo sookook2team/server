@@ -1,7 +1,11 @@
 package sookook.daybyday.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import sookook.daybyday.entity.Hashtag;
+
+import java.util.List;
 
 
 public interface HashtagRepository extends JpaRepository<Hashtag, Long> {

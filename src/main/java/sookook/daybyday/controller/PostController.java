@@ -32,11 +32,8 @@ public class PostController {
      * 날짜별 게시글 조회
      */
     @GetMapping("/")
-    public List<PostDto> postsByMonth(@RequestParam(required = true) Integer year,
-                                      @RequestParam(required = true) Integer month) {
-        List<Post> postsByMonth = postService.getPostsByMonth(year, month);
-
-        return postsByMonth.stream().map(PostDto::new).toList();
+    public List<Post> postsByMonth(@RequestParam(required = true) Integer year, @RequestParam(required = true) Integer month) {
+        return postService.getPostsByMonth(year, month);
     }
 
     /**
@@ -54,24 +51,46 @@ public class PostController {
 
 
     /** 게시글 생성 */
+//    @PostMapping("/create")
+//    public void createPost(@RequestParam List<MultipartFile> files,
+//                              @RequestParam String title,
+//                              @RequestParam String content,
+//                              @RequestParam LocalDate date,
+//                              @RequestParam Category category) {
+//        try {
+//            Long memberId = (Long) session.getAttribute("memberId");
+//            Member member = memberService.findById(memberId);
+//
+//            postService.create(title, content, date, category, member);
+//
+//            ResponseEntity<List<String>> listResponseEntity = fileService.uploadFiles(files);
+//
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
     @PostMapping("/create")
-    public PostDto createPost(@RequestParam List<MultipartFile> files,
-                              @RequestParam String title,
-                              @RequestParam String content,
-                              @RequestParam LocalDate date,
-                              @RequestParam Category category) {
+    public ResponseEntity<List<String>> createPost(
+            @RequestParam List<MultipartFile> files,
+            @RequestParam String title,
+            @RequestParam String content,
+            @RequestParam LocalDate date,
+            @RequestParam Category category) {
         try {
             Long memberId = (Long) session.getAttribute("memberId");
             Member member = memberService.findById(memberId);
 
             postService.create(title, content, date, category, member);
 
-            ResponseEntity<List<String>> listResponseEntity = fileService.uploadFiles(files);
+            // 파일 업로드 결과를 반환
+            return fileService.uploadFiles(files);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+
+
+//}
 
 
 }
