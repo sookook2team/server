@@ -11,10 +11,9 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity  // 설정 클래스
-
 public class Member {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
 
@@ -22,7 +21,7 @@ public class Member {
     private String email;
 
     @Column(nullable = false)
-    private String memberName;
+    private String username;
 
     @Column(nullable = false)
     private String password;
@@ -32,15 +31,15 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
 
-    public static Member createUser(String email,
+    public static Member createMember(String email,
                                     String password,
-                                    String memberName) {
+                                    String username) {
 
         Member member = new Member();
 
         member.setEmail(email);
         member.setPassword(password);
-        member.setMemberName(memberName);
+        member.setUsername(username);
         return member;
     }
 
